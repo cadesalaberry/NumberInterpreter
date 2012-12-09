@@ -1,4 +1,5 @@
 package number;
+
 import java.util.ArrayList;
 
 /**
@@ -40,13 +41,24 @@ public class SerialNumber {
 		return this.numberTypes.contains(type);
 	}
 
-	public String guessedTypeReport(){
-		
-		String report = "";
-		
-		//TODO: call the method that generates the report.
-		return report;
+	public String guessedTypeReport() {
+
+		String report = "Report:\n" + "The serial number " + serial
+				+ " has been determined to be probably a ";
+
+		for (int i = 0; i < numberTypes.size() - 1; i++) {
+
+			report += numberTypes.get(i) + ",";
+		}
+
+		if (numberTypes.size() > 0) {
+
+			report += numberTypes.get(numberTypes.size() - 1);
+		}
+
+		return report + ".";
 	}
+
 	/**
 	 * Checks if the two numbers are equal.
 	 * 

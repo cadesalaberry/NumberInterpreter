@@ -6,7 +6,7 @@ import number.SerialNumber;
  * 
  * 
  * @author cadesalaberry
- *
+ * 
  */
 public class NumberInterpreter {
 
@@ -18,23 +18,34 @@ public class NumberInterpreter {
 	public static void main(String[] args) {
 
 		// Parses the arguments, and creates the numbers accordingly.
-		for (int i = 0; i < args.length; i++) {
-			if (isValidInt(args[i])) {
-				SerialNumber number = new SerialNumber(args[i]);
+		for (String arg : args) {
+
+			System.out.println("Trying number:" + arg.toString());
+			
+			if (isValidSerial(arg)) {
+
+				SerialNumber number = new SerialNumber(arg);
 				numbers.add(number);
 			} else {
-				System.out.println("The number at position " + i
-						+ "is not well formatted.");
+
+				System.out.println("The number " + arg
+						+ " is not well formatted.");
 			}
 		}
 
+		
+		for (SerialNumber number : numbers){
+
+			System.out.println(number.guessedTypeReport());
+		}
 	}
 
-	private static boolean isValidInt(String string) {
+	private static boolean isValidSerial(String string) {
 		try {
-			Integer.parseInt(string);
+
 			return true;
 		} catch (NumberFormatException e) {
+			
 			return false;
 		}
 
